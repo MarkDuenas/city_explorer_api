@@ -14,9 +14,14 @@ app.use(cors());
 app.get('/location', handleLocation);
 app.get('/weather', handleWeather);
 
+app.use('*', notFoundError);
+
 
 // HELPER FUNCTIONS
 function handleLocation(req, res) {
+    if(!req.query.city){
+        res.status(500).send("Sorry, something went wrong");
+    }
     const geoData = require('./data/location.json');
     const city = req.query.city;
     const locationData = new Location(city, geoData);
@@ -30,6 +35,10 @@ function handleWeather(req, res) {
         weatherData.push(new Weather(entry));
     });
     res.send(weatherData);
+}
+
+function notFoundError(req, res) {
+    res.status(404).send('Wrong route my dude!');
 }
 
 // CONSTRUCTORS
