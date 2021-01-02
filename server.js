@@ -1,6 +1,6 @@
 'use strict';
 
-require('dotenv').config();
+require('dotenv/types').config();
 
 const express = require('express');
 const cors = require('cors');
