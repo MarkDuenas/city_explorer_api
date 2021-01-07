@@ -22,7 +22,7 @@ Technologies used:
   - cors
   - heroku for deployme
 ## Change Log
-<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
+<!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples: -->
 
 01-02-2021 1:20pm - Application has functional express server, with a GET route for the location and weather resource, including errors if request is empy.
 01-06-2021 8:30pm - Application has been refactored to make API calls to retreive data from Geocoding API and Weatherbit API using superagent.
