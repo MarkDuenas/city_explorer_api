@@ -40,11 +40,22 @@ function handleLocation(req, res) {
 }
 
 function handleWeather(req, res) {
-    const wData = require('./data/weather.json');
-    const weatherData = wData.data.map( entry => {
-        return new Weather(entry);
-    });
-    res.send(weatherData);
+    let key = process.env.WEATHER_API_KEY;
+    let lon = req.query.longitude;
+    let lat = req.query.latitude;
+    const url = `https://api.weatherbit.io/v2.0/forecast/daily?lat=${lat}&lon=${lon}&key=${key}`;
+
+
+    superagent.get(url)
+        .then(weather => {
+            const weatherData = weather.body.data.map( entry =>{
+                return new Weather(entry);
+            })
+            res.status(200).send(weatherData);
+        })
+        .catch( err => {
+            console.log(err);
+        });
 }
 
 function notFoundError(req, res) {
@@ -61,7 +72,7 @@ function Location(city, geoData) {
 
 function Weather(wData) {
     this.forecast = wData.weather.description;
-    this.time = wData.valid_date;
+    this.time = wData.datetime;
 }
 
 app.listen(PORT, () => console.log(`Now rocking on port ${PORT}`));
