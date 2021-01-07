@@ -4,7 +4,6 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
-const { response } = require('express');
 
 const PORT = process.env.PORT;
 const app = express();
@@ -30,9 +29,8 @@ function handleLocation(req, res) {
 
 function handleWeather(req, res) {
     const wData = require('./data/weather.json');
-    const weatherData = [];
-    wData.data.forEach( entry => {
-        weatherData.push(new Weather(entry));
+    const weatherData = wData.data.map( entry => {
+        return new Weather(entry);
     });
     res.send(weatherData);
 }
