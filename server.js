@@ -67,6 +67,7 @@ function insertLocationDB (location) {
     client.query(SQL, safeValues)
         .then( results => {
             console.log('SAVING TO THE DATABASE', results);
+            return results;
         })
         .catch( err => {
             console.log('ERROR', err);
@@ -100,7 +101,7 @@ function handleLocation(req, res) {
                         // SAVE API DATA TO DATABASE
                         // insertLocationDB(location);
                         res.status(200).send(location);
-            
+                        
                     })
                     .catch( err => {
                         console.log(err);
