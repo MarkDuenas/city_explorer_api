@@ -1,5 +1,15 @@
 # City Explorer
 
+Number and name of feature: 2, API calls and DB calls
+
+Estimate of time needed to complete: 3hrs
+
+Start time: 6:30pm
+
+Finish time: 9:41pm
+
+Actual time needed to complete: 3hrs 11 mins.
+
 **Author**: Mark duenas
 **Version**: 1.0.0 (increment the patch/fix version number if you make more commits past your first submission)
 
