@@ -28,5 +28,8 @@ Technologies used:
 
 01-06-2021 8:30pm - Application has been refactored to make API calls to retreive data from Geocoding API and Weatherbit API using superagent.
 
+01-07-2021 9:53pm - Application now has a working SQL database. Data pulled from API calls will now be saved to database. If data already exist in DB, data will be pulled from DB
+instead of making another API call. If data does not exist, data will be pulled from API and saved to DB for later use.
+
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
