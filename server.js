@@ -29,32 +29,6 @@ client.on('error', err => {throw err;});
 
 
 // HELPER FUNCTIONS
-// function retrieveLocationDB(req, res) {
-//     let city = req.query.city;
-//     let SQL = 'SELECT search_query, formatted_query, latitude, longitude FROM locations WHERE search_query = $1';
-//     let safeValues = [city];
-
-//     if(req.query.city){
-//         res.status(500).send("Sorry, something went wrong");
-//     }
-
-//     client.query(SQL, safeValues)
-//         .then( results => {
-//             if(results.rowCount > 0){
-//                 console.log(results.rows[0], "HERE IS MY RESULTS");
-//                 res.status(200).send(results.rows[0]);
-//             }
-//             else{
-//                 // IF INFO NOT IN DB MAKE API CALL TO PULL DATA
-//                 handleLocation(req, res);
-//             }
-//         })
-//         .catch(err => {
-//             console.log('ERROR', err);
-//             res.status(500).send('Sorry, something went wrong');
-//         });
-// }
-
 function insertLocationDB (location) {
     let search_query = location.search_query;
     let formatted_query = location.formatted_query;
@@ -78,7 +52,7 @@ function handleLocation(req, res) {
     let city = req.query.city;
     const url = `https://us1.locationiq.com/v1/search.php?key=${key}&q=${city}&format=json&limit=1`;
 
-    if(req.query.city){
+    if(!req.query.city){
         res.status(500).send("Sorry, something went wrong");
     }
 
@@ -95,11 +69,12 @@ function handleLocation(req, res) {
                 superagent.get(url)
                     .then(data => {
                         console.log("MAKING API CALL");
+                        console.log(data.body[0]);
                         const geoData = data.body[0];
                         const location = new Location(city, geoData);
             
                         // SAVE API DATA TO DATABASE
-                        // insertLocationDB(location);
+                        insertLocationDB(location);
                         res.status(200).send(location);
                         
                     })
