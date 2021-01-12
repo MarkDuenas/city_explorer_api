@@ -75,6 +75,7 @@ function handleLocation(req, res) {
             
                         // SAVE API DATA TO DATABASE
                         insertLocationDB(location);
+
                         res.status(200).send(location);
                         
                     })
@@ -102,7 +103,7 @@ function handleWeather(req, res) {
         .then(weather => {
             const weatherData = weather.body.data.map( entry =>{
                 return new Weather(entry);
-            })
+            });
             res.status(200).send(weatherData);
         })
         .catch( err => {
