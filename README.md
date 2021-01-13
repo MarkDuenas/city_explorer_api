@@ -41,5 +41,7 @@ Technologies used:
 01-07-2021 9:53pm - Application now has a working SQL database. Data pulled from API calls will now be saved to database. If data already exist in DB, data will be pulled from DB
 instead of making another API call. If data does not exist, data will be pulled from API and saved to DB for later use.
 
+01-12-2021 9:47pm - Application now has working Movie and Yelp API calls to display on city-explorer front-end.
+
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
